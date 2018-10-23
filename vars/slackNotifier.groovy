@@ -14,3 +14,4 @@ def call(String buildResult) {
     slackSend color: "danger", message: "(${env.STAGE}) Job: ${env.JOB_NAME} with buildnumber ${env.BUILD_NUMBER} was unclear"	
   }
 }
+
