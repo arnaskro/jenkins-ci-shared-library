@@ -54,7 +54,7 @@ def call(String buildResult) {
     "title_link": env.RUN_DISPLAY_URL
   ]
   def json = new groovy.json.JsonBuilder()
-  json attachment,
+  json [ attachment ]
 
   print groovy.json.JsonOutput.prettyPrint(json.toString())
   // slackSend(channel: '@arnas', attachments: root.toString())
