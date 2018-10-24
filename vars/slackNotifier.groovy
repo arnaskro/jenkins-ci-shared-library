@@ -1,8 +1,6 @@
 #!/usr/bin/env groovy
 import groovy.json.JsonBuilder;
 
-def json = new JsonBuilder()
-
 def call(String buildResult) {
   // Create JSON object
   // Initial variables
@@ -21,6 +19,7 @@ def call(String buildResult) {
   }
 
   // Build up the object
+  def json = new JsonBuilder()
   def root = json [
     {
       fallback "${status}: ${job_title}"
