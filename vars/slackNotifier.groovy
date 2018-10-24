@@ -66,5 +66,5 @@ def call(String buildResult) {
   }
 
   print root.toString()
-  slackSend(channel: '@arnas', attachments: root.toString())
+  // slackSend(channel: '@arnas', attachments: root.toString())
 }
