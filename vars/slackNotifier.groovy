@@ -52,8 +52,8 @@ def call(String buildResult) {
     'key2': 142.1
   ]
   def json = new groovy.json.JsonBuilder()
-  json rootKey: someMap
+  json rootKey: someMap, someMap
 
-  print json.toString()
+  print "[${json.toString()}]""
   // slackSend(channel: '@arnas', attachments: root.toString())
 }
