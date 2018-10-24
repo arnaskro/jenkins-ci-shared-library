@@ -1,5 +1,9 @@
 #!/usr/bin/env groovy
 
+class Node {
+   String text
+}
+
 def call(String buildResult) {
   // // Create JSON objects
   // JSONArray attachments = new JSONArray();
@@ -53,8 +57,6 @@ def call(String buildResult) {
   // attachments.add(attachment);
 
   // slackSend(channel: '@arnas', attachments: attachments.toString())
-  test = {
-    "text": "Hey"
-  }
+  test = new Node(text: "Hello")
   slackSend(channel: '@arnas', attachments: test)
 }
