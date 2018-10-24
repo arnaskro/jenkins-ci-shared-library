@@ -18,41 +18,25 @@ def call(String buildResult) {
     status = "FAIL at ${env.STAGE_NAME}"
   }
 
-  // Build up the object
-  // def json = new JsonBuilder()
-  // def root = json {
-  //     fallback: "${status}: ${job_title}"
-  //     color: color
-  //     title: job_title
-  //     title_link: env.RUN_DISPLAY_URL
-  //   }
-
-  // field_environment.put('title', "Environment");
-  // field_environment.put('value', env.STAGE);
-  // field_environment.put('short', 1);
-
-  // field_status.put('title', "Status");
-  // field_status.put('value', status);
-  // field_status.put('short', 1);
-
-  // field_commit.put('title', "Commit ID");
-  // field_commit.put('value', env.GIT_COMMIT);
-  // field_commit.put('short', 0);
-
-  // // Add them to the fields array
-  // attachments.add(field_environment);
-  // attachments.add(field_status);
-  // attachments.add(field_commit);
-
-  // // Build up the attachment
-  // attachment.put('fields', fields);
-
   def json = new groovy.json.JsonBuilder()
   json (
     "fallback": "${status}: ${job_title}",
     "color": color,
     "title": job_title,
-    "title_link": env.RUN_DISPLAY_URL
+    "title_link": env.RUN_DISPLAY_URL,
+    "fields": (
+      "title": "Environment",
+      "value": env.STAGE,
+      "short": 1
+    ), (
+      "title": "Status",
+      "value": status,
+      "short": 1
+    ), (
+      "title": "Commit ID",
+      "value": env.GIT_COMMIT,
+      "short": 0
+    )
   )
 
   print groovy.json.JsonOutput.prettyPrint(json.toString())
