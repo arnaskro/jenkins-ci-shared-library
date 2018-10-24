@@ -47,9 +47,12 @@ def call(String buildResult) {
   // // Build up the attachment
   // attachment.put('fields', fields);
 
-
+  def someMap = [
+    'key1': "value",
+    'key2': 142.1
+  ]
   def json = new groovy.json.JsonBuilder()
-  json rootKey: "hello"
+  json rootKey: someMap
 
   print json.toString()
   // slackSend(channel: '@arnas', attachments: root.toString())
