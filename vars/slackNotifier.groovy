@@ -19,13 +19,13 @@ def call(String buildResult) {
   }
 
   // Build up the object
-  def json = new JsonBuilder()
-  def root = json {
-      fallback: "${status}: ${job_title}"
-      // color: color
-      // title: job_title
-      // title_link: env.RUN_DISPLAY_URL
-    }
+  // def json = new JsonBuilder()
+  // def root = json {
+  //     fallback: "${status}: ${job_title}"
+  //     color: color
+  //     title: job_title
+  //     title_link: env.RUN_DISPLAY_URL
+  //   }
 
   // field_environment.put('title', "Environment");
   // field_environment.put('value', env.STAGE);
@@ -48,6 +48,23 @@ def call(String buildResult) {
   // attachment.put('fields', fields);
 
 
-  echo root.toString()
+  def builder = new groovy.json.JsonBuilder()
+  def root = builder.people {
+      person {
+          firstName 'Guillame'
+          lastName 'Laforge'
+          // Named arguments are valid values for objects too
+          address(
+                  city: 'Paris',
+                  country: 'France',
+                  zip: 12345,
+          )
+          married true
+          // a list of values
+          conferences 'JavaOne', 'Gr8conf'
+      }
+  }
+
+  print root.toString()
   slackSend(channel: '@arnas', attachments: root.toString())
 }
