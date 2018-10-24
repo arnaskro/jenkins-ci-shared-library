@@ -24,7 +24,7 @@ def call(String buildResult) {
     "color": color,
     "title": job_title,
     "title_link": env.RUN_DISPLAY_URL,
-    "fields": json (
+    "fields": (
       "title": "Environment",
       "value": env.STAGE,
       "short": 1
