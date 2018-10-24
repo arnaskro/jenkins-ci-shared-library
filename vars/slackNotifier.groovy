@@ -22,10 +22,10 @@ def call(String buildResult) {
   def json = new JsonBuilder()
   def root = json [
     {
-      fallback "${status}: ${job_title}"
-      color color
-      title job_title
-      title_link env.RUN_DISPLAY_URL
+      fallback: "${status}: ${job_title}"
+      color: color
+      title: job_title
+      title_link: env.RUN_DISPLAY_URL
     }
   ]
 
