@@ -50,6 +50,6 @@ def call(String buildResult) {
   // attachment.put('fields', fields);
 
 
-
+  echo root.toString()
   slackSend(channel: '@arnas', attachments: root.toString())
 }
