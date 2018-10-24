@@ -24,19 +24,20 @@ def call(String buildResult) {
     "color": color,
     "title": job_title,
     "title_link": env.RUN_DISPLAY_URL,
-    "fields": (
+    "fields": json (
       "title": "Environment",
       "value": env.STAGE,
       "short": 1
-    ), (
-      "title": "Status",
-      "value": status,
-      "short": 1
-    ), (
-      "title": "Commit ID",
-      "value": env.GIT_COMMIT,
-      "short": 0
     )
+    // , (
+    //   "title": "Status",
+    //   "value": status,
+    //   "short": 1
+    // ), (
+    //   "title": "Commit ID",
+    //   "value": env.GIT_COMMIT,
+    //   "short": 0
+    // )
   )
 
   print groovy.json.JsonOutput.prettyPrint(json.toString())
