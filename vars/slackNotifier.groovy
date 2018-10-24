@@ -22,12 +22,14 @@ def call(String buildResult) {
 
   // Build up the object
   def root = json [
-    fallback "${status}: ${job_title}"
-    color color
-    title job_title
-    title_link env.RUN_DISPLAY_URL
+    {
+      fallback "${status}: ${job_title}"
+      color color
+      title job_title
+      title_link env.RUN_DISPLAY_URL
+    }
   ]
-  
+
   // field_environment.put('title', "Environment");
   // field_environment.put('value', env.STAGE);
   // field_environment.put('short', 1);
