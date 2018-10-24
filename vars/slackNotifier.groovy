@@ -20,14 +20,12 @@ def call(String buildResult) {
 
   // Build up the object
   def json = new JsonBuilder()
-  def root = json [
-    {
+  def root = json {
       fallback: "${status}: ${job_title}"
       // color: color
       // title: job_title
       // title_link: env.RUN_DISPLAY_URL
     }
-  ]
 
   // field_environment.put('title', "Environment");
   // field_environment.put('value', env.STAGE);
