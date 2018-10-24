@@ -23,9 +23,9 @@ def call(String buildResult) {
   def root = json [
     {
       fallback: "${status}: ${job_title}"
-      color: color
-      title: job_title
-      title_link: env.RUN_DISPLAY_URL
+      // color: color
+      // title: job_title
+      // title_link: env.RUN_DISPLAY_URL
     }
   ]
 
