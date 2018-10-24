@@ -47,13 +47,14 @@ def call(String buildResult) {
   // // Build up the attachment
   // attachment.put('fields', fields);
 
-  def json = new groovy.json.JsonBuilder()
-  json (
+  def attachment = [
     "fallback": "${status}: ${job_title}",
     "color": color,
     "title": job_title,
     "title_link": env.RUN_DISPLAY_URL
-  )
+  ]
+  def json = new groovy.json.JsonBuilder()
+  json attachment
 
   print groovy.json.JsonOutput.prettyPrint(json.toString())
   // slackSend(channel: '@arnas', attachments: root.toString())
