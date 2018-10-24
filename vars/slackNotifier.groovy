@@ -54,5 +54,7 @@ def call(String buildResult) {
   // Add it to the atachments array
   attachments.add(attachment);
 
+  print attachments.toString()
+
   slackSend(channel: '@arnas', attachments: attachments.toString())
 }
