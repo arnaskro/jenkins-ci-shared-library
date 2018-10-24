@@ -48,23 +48,9 @@ def call(String buildResult) {
   // attachment.put('fields', fields);
 
 
-  def builder = new groovy.json.JsonBuilder()
-  def root = builder.people {
-      person {
-          firstName 'Guillame'
-          lastName 'Laforge'
-          // Named arguments are valid values for objects too
-          address(
-                  city: 'Paris',
-                  country: 'France',
-                  zip: 12345,
-          )
-          married true
-          // a list of values
-          conferences 'JavaOne', 'Gr8conf'
-      }
-  }
+  def json = new groovy.json.JsonBuilder()
+  json rootKey: someMap
 
-  print root.toString()
+  print json.toString()
   // slackSend(channel: '@arnas', attachments: root.toString())
 }
