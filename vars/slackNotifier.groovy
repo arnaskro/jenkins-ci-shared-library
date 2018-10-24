@@ -1,4 +1,5 @@
 #!/usr/bin/env groovy
+import groovy.json.*
 
 class Node {
    String text
@@ -58,5 +59,5 @@ def call(String buildResult) {
 
   // slackSend(channel: '@arnas', attachments: attachments.toString())
   test = new Node(text: "Hello")
-  slackSend(channel: '@arnas', attachments: test)
+  slackSend(channel: '@arnas', attachments: new JsonBuilder(test).toPrettyString())
 }
