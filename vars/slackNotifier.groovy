@@ -48,9 +48,9 @@ def call(String buildResult) {
   // attachment.put('fields', fields);
 
   def attachment = [
-    "fallback": "${status}: ${job_title}"
-    "color": color
-    "title": job_title
+    "fallback": "${status}: ${job_title}",
+    "color": color,
+    "title": job_title,
     "title_link": env.RUN_DISPLAY_URL
   ]
   def json = new groovy.json.JsonBuilder()
