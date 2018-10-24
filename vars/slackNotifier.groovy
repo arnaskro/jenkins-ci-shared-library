@@ -55,5 +55,6 @@ def call(String buildResult) {
   json rootKey: someMap, someMap
 
   print "[${json.toString()}]"
+  print groovy.json.JsonOutput.prettyPrint("[${json.toString()}]")
   // slackSend(channel: '@arnas', attachments: root.toString())
 }
