@@ -53,9 +53,7 @@ def call(String buildResult) {
 
   // Convert to json
   def json = new groovy.json.JsonBuilder()
-  json attachment
+  def attachments = "[${(json attachment).toString()}]"
 
-  echo json.toString()
-  echo "[${json.toString()}]"
-  slackSend(channel: 'temp-notification-dev', attachments: "[${json.toString()}]")
+  slackSend(channel: 'temp-notification-dev', attachments: attachments)
 }
