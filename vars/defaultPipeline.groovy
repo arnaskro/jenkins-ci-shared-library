@@ -26,17 +26,11 @@ def call() {
 
       stage ('Test') {
         steps {
-          parallel (
-            "Chrome": { echo 'Google Chrome' }
-            "Firefox": { echo 'Firefox' }
-            "Run npm tests": {
-              script {
-                dir(env.SERVICE_DIR) {
-                  test()
-                }
-              }
-            },
-          )
+          script {
+            dir(env.SERVICE_DIR) {
+              test()
+            }
+          }
         }
       }
 
