@@ -38,7 +38,7 @@ def call() {
         steps {
           script {
             dir(env.SERVICE_DIR) {
-              approval()
+              approve()
             }
           }
         }
