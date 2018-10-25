@@ -54,8 +54,15 @@ def call() {
         }
       }
     }
+
     post {
-      always {
+      success {
+        slackNotifier(currentBuild.currentResult)
+      }
+      failure {
+        slackNotifier(currentBuild.currentResult)
+      }
+      unstable {
         slackNotifier(currentBuild.currentResult)
       }
     }

@@ -30,15 +30,15 @@ def call(String buildResult) {
     "short": 1
   ]
 
-  def field_service = [
-    "title": "Service",
-    "value": env.SERVICE,
-    "short": 1
-  ]
-
   def field_commit = [
     "title": "Commit ID",
     "value": env.GIT_COMMIT,
+    "short": 0
+  ]
+
+  def field_service = [
+    "title": "Service",
+    "value": env.SERVICE,
     "short": 1
   ]
 
