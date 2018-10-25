@@ -3,11 +3,9 @@ def call() {
 
   slackSend(channel: 'temp-notification-dev', message: "<!here> *<${env.RUN_DISPLAY_URL}|${job_title}>*\nWaiting for approval to deploy *${env.SERVICE}* to *${env.STAGE}* environment")
 
-  def FEEDBACK = input message: "Deploy ${env.SERVICE_DIR} to ${env.STAGE}?", submitterParameter: 'submitter', parameters: [choice(name: "Deploy ${env.SERVICE_DIR} to ${env.STAGE}?", choices: 'no\nyes', description: 'Choose "yes" if you want to deploy this build')]
+  def FEEDBACK = input message: "Deploy ${env.SERVICE_DIR} to ${env.STAGE}?", submitterParameter: 'submitter', parameters: [choice(name: 'approval', choices: 'no\nyes', description: "Deploy ${env.SERVICE_DIR} to ${env.STAGE}?")]
 
-  echo FEEDBACK
-
-  if (FEEDBACK == 'yes') {
+  if (FEEDBACK.approval == 'yes') {
     slackSend(channel: 'temp-notification-dev', color: 'good', message: "Deployment of *${env.SERVICE}* to *${env.STAGE}*. Approved by *${FEEDBACK.submitter}*")
   } else {
     error 'Deployment cancelled.'
