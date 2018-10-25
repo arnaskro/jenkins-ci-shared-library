@@ -4,7 +4,7 @@ import groovy.json.JsonBuilder;
 def call(String buildResult) {
   // Create JSON object
   // Initial variables
-  job_title = "${env.JOB_NAME} (${env.BUILD_DISPLAY_NAME})"
+  job_title = "${env.JOB_NAME} > ${env.SERVICE} (${env.BUILD_DISPLAY_NAME})"
   color = ""
   status = buildResult
 
@@ -31,6 +31,12 @@ def call(String buildResult) {
     "short": 1
   ]
 
+  def field_service = [
+    "title": "Service",
+    "value": env.SERVICE,
+    "short": 1
+  ]
+
   def field_commit = [
     "title": "Commit ID",
     "value": env.GIT_COMMIT,
@@ -42,7 +48,7 @@ def call(String buildResult) {
     "color": color,
     "title": job_title,
     "title_link": env.RUN_DISPLAY_URL,
-    "fields": [field_env, field_status, field_commit]
+    "fields": [field_env, field_commit, field_service, field_status]
   ]
 
   // Convert to json
