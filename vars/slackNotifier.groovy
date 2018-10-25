@@ -51,5 +51,5 @@ def call(String buildResult) {
 
   echo json.toString()
   echo "[${json.toString()}]"
-  slackSend(channel: '@arnas', attachments: "[${json.toString()}]")
+  slackSend(channel: 'temp-notification-dev', attachments: "[${json.toString()}]")
 }
