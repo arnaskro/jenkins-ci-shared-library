@@ -1,5 +1,4 @@
 #!/usr/bin/env groovy
-import groovy.json.JsonBuilder;
 
 def call(String buildResult) {
   // Create JSON object
