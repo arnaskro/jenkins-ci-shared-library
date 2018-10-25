@@ -18,6 +18,7 @@ def call(String buildResult) {
     status = "FAIL at ${env.STAGE_NAME}"
   }
 
+  // Create fields
   def field_env = [
     "title": "Environment",
     "value": env.STAGE,
@@ -43,10 +44,10 @@ def call(String buildResult) {
     "title_link": env.RUN_DISPLAY_URL,
     "fields": [field_env, field_status, field_commit]
   ]
-  
+
+  // Convert to json
   def json = new groovy.json.JsonBuilder()
   json attachment
 
-  print groovy.json.JsonOutput.prettyPrint(json.toString())
-  // slackSend(channel: '@arnas', attachments: root.toString())
+  slackSend(channel: '@arnas', attachments: json.toString())
 }
