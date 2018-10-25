@@ -18,27 +18,34 @@ def call(String buildResult) {
     status = "FAIL at ${env.STAGE_NAME}"
   }
 
-  def json = new groovy.json.JsonBuilder()
-  json (
+  def field_env = [
+    "title": "Environment",
+    "value": env.STAGE,
+    "short": 1
+  ]
+
+  def field_status = [
+    "title": "Status",
+    "value": status,
+    "short": 1
+  ]
+
+  def field_commit = [
+    "title": "Commit ID",
+    "value": env.GIT_COMMIT,
+    "short": 0
+  ]
+
+  def attachment = [
     "fallback": "${status}: ${job_title}",
     "color": color,
     "title": job_title,
     "title_link": env.RUN_DISPLAY_URL,
-    "fields": (
-      "title": "Environment",
-      "value": env.STAGE,
-      "short": 1
-    )
-    // , (
-    //   "title": "Status",
-    //   "value": status,
-    //   "short": 1
-    // ), (
-    //   "title": "Commit ID",
-    //   "value": env.GIT_COMMIT,
-    //   "short": 0
-    // )
-  )
+    "fields": [field_env, field_status, field_commit]
+  ]
+  
+  def json = new groovy.json.JsonBuilder()
+  json attachment
 
   print groovy.json.JsonOutput.prettyPrint(json.toString())
   // slackSend(channel: '@arnas', attachments: root.toString())
