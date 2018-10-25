@@ -8,7 +8,7 @@ def call() {
   if (FEEDBACK.approval == 'yes') {
     slackSend(channel: 'temp-notification-dev', color: 'good', message: "Deployment of *${env.SERVICE}* to *${env.STAGE}*. Approved by *${FEEDBACK.submitter}*")
   } else {
-    slackSend(channel: 'temp-notification-dev', color: 'danger', message: "Deployment of *${env.SERVICE}* to *${env.STAGE}*. Not approved by *${FEEDBACK.submitter}*")
+    slackSend(channel: 'temp-notification-dev', color: 'warning', message: "Deployment of *${env.SERVICE}* to *${env.STAGE}*. Not approved by *${FEEDBACK.submitter}*")
     error "Deployment cancelled by ${FEEDBACK.submitter}"
   }
 }
