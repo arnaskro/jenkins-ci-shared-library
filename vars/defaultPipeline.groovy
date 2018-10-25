@@ -57,13 +57,13 @@ def call() {
 
     post {
       success {
-        slackNotifier(currentBuild.currentResult)
+        slackNotifier("SUCCESS")
       }
       failure {
-        slackNotifier(currentBuild.currentResult)
+        slackNotifier("FAILURE")
       }
       unstable {
-        slackNotifier(currentBuild.currentResult)
+        slackNotifier("UNSTABLE")
       }
     }
   }
