@@ -48,7 +48,7 @@ def call() {
         steps {
           script {
             dir(env.SERVICE_DIR) {
-              deploy()
+              // deploy()
             }
           }
         }
@@ -56,14 +56,8 @@ def call() {
     }
 
     post {
-      success {
-        slackNotifier("SUCCESS")
-      }
-      failure {
-        slackNotifier("FAILURE")
-      }
-      unstable {
-        slackNotifier("UNSTABLE")
+      always {
+        slackNotifier(currentBuild.currentResult)
       }
     }
   }
