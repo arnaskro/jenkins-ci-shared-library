@@ -40,7 +40,7 @@ def call(String buildResult) {
   def field_commit = [
     "title": "Commit ID",
     "value": env.GIT_COMMIT,
-    "short": 0
+    "short": 1
   ]
 
   def attachment = [
@@ -48,7 +48,7 @@ def call(String buildResult) {
     "color": color,
     "title": job_title,
     "title_link": env.RUN_DISPLAY_URL,
-    "fields": [field_env, field_commit, field_service, field_status]
+    "fields": [field_env, field_service, field_commit, field_status]
   ]
 
   // Convert to json
