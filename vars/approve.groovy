@@ -5,6 +5,8 @@ def call() {
 
   def FEEDBACK = input message: "Deploy ${env.SERVICE_DIR} to ${env.STAGE}?", submitterParameter: 'submitter', parameters: [choice(name: 'approval', choices: 'no\nyes', description: "Deploy ${env.SERVICE_DIR} to ${env.STAGE}?")]
 
+  sh 'printenv'
+
   if (FEEDBACK.approval == 'yes') {
     slackSend(channel: 'temp-notification-dev', color: 'good', message: "Deployment of *${env.SERVICE}* to *${env.STAGE}* was approved by *${FEEDBACK.submitter}*")
   } else {
