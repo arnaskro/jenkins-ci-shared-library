@@ -51,7 +51,7 @@ def call() {
         steps {
           script {
             dir(env.SERVICE_DIR) {
-              // deploy()
+              deploy()
             }
           }
         }
