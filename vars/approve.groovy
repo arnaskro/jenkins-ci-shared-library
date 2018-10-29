@@ -5,14 +5,6 @@ def call() {
 
   def FEEDBACK = input message: "Deploy ${env.SERVICE_DIR} to ${env.STAGE}?", submitterParameter: 'submitter', parameters: [choice(name: 'approval', choices: 'no\nyes', description: "Deploy ${env.SERVICE_DIR} to ${env.STAGE}?")]
 
-  sh 'printenv'
-
-  def newtest = input message: "Do you want to proceed", submitter: "GITHUBOrgName*TeamName"
-
-  echo newtest.TeamName
-  echo newtest.GITHUBOrgName
-  echo newtest
-
   if (FEEDBACK.approval == 'yes') {
     slackSend(color: 'good', message: "Deployment of *${env.SERVICE}* to *${env.STAGE}* was approved by *${FEEDBACK.submitter}*")
   } else {
