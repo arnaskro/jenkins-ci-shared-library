@@ -7,10 +7,18 @@ def call() {
 
   sh 'printenv'
 
+  def newtest = input message: "Do you want to proceed", submitter: "GITHUBOrgName*TeamName"
+
+  echo newtest.TeamName
+  echo newtest.GITHUBOrgName
+  echo newtest
+
   if (FEEDBACK.approval == 'yes') {
     slackSend(color: 'good', message: "Deployment of *${env.SERVICE}* to *${env.STAGE}* was approved by *${FEEDBACK.submitter}*")
   } else {
     slackSend(color: 'warning', message: "Deployment of *${env.SERVICE}* to *${env.STAGE}* was not approved by *${FEEDBACK.submitter}*")
+
+    // Cancel the deployment
     error "Deployment cancelled by ${FEEDBACK.submitter}"
   }
 }
