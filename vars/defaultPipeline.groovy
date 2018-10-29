@@ -35,6 +35,7 @@ def call() {
       }
 
       stage('Approve'){
+        // TODO: add check if we need an approve
         steps {
           script {
             dir(env.SERVICE_DIR) {
@@ -48,7 +49,7 @@ def call() {
         steps {
           script {
             dir(env.SERVICE_DIR) {
-              deploy()
+              // deploy()
             }
           }
         }

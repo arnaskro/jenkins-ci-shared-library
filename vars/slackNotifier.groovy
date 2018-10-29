@@ -12,6 +12,8 @@ def call(String buildResult) {
   } else if( buildResult == "UNSTABLE" ) { 
     color = "warning"
   } else { 
+    sh 'printenv'
+
     if (env.STAGE_NAME == 'Declarative: Post Actions') {
       color = "warning"
       status = "Build was successful but not approved."

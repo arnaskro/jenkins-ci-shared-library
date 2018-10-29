@@ -7,6 +7,13 @@ def call() {
   // TODO: figure out the stage automatically
   env.STAGE = 'testing'
 
+  // if env.BRANCH_NAME == 'master'
+  //   env.STAGE = 'prerelease'
+  // else if env.BRANCH_NAME == 'development'
+  //   env.STAGE = 'development'
+  // else if env.BRANCH_NAME == 
+
+
   sh 'ls'
   sh 'node -v'
   sh 'npm -v'
