@@ -5,6 +5,7 @@ def call() {
     agent any
     stages {
       stage('Initialize') {
+        agent { label 'build-node' }
         steps {
           script {
             dir(env.SERVICE_DIR) {
@@ -15,6 +16,7 @@ def call() {
       }
 
       stage('Build') {
+        agent { label 'build-node' }
         steps {
           script {
             dir(env.SERVICE_DIR) {
@@ -25,6 +27,7 @@ def call() {
       }
 
       stage ('Test') {
+        agent { label 'build-node' }
         steps {
           script {
             dir(env.SERVICE_DIR) {
@@ -35,6 +38,7 @@ def call() {
       }
 
       stage('Approve'){
+        agent { label 'deploy-node' }
         when {
           expression { STAGE ==~ /(production|prerel)/ }
         }
@@ -48,6 +52,7 @@ def call() {
       }
 
       stage('Deploy'){
+        agent { label 'deploy-node' }
         steps {
           script {
             dir(env.SERVICE_DIR) {
