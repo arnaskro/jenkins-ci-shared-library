@@ -59,5 +59,5 @@ def call(String buildResult) {
   json attachment
   def attachments = "[${json.toString()}]"
 
-  slackSend(channel: 'temp-notification-dev', attachments: attachments)
+  slackSend(attachments: attachments)
 }
