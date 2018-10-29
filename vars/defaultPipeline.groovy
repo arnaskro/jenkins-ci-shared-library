@@ -35,7 +35,9 @@ def call() {
       }
 
       stage('Approve'){
-        // TODO: add check if we need an approve
+        when {
+          expression { STAGE ==~ /(production|prerel)/ }
+        }
         steps {
           script {
             dir(env.SERVICE_DIR) {

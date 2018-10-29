@@ -13,6 +13,7 @@ def call(String buildResult) {
     color = "warning"
   } else { 
     sh 'printenv'
+    print buildResult
 
     if (env.STAGE_NAME == 'Declarative: Post Actions') {
       color = "warning"
