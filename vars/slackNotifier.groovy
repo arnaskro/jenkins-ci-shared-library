@@ -14,14 +14,11 @@ def call(String buildResult) {
   } else { 
     sh 'printenv'
     print buildResult
+    
+    // TODO: check if build was not approved and give a different response
 
-    if (env.STAGE_NAME == 'Declarative: Post Actions') {
-      color = "warning"
-      status = "Build was successful but not approved."
-    } else {
-      color = "danger"
-      status = "FAIL at ${env.STAGE_NAME}"
-    }
+    color = "danger"
+    status = "FAIL at ${env.STAGE_NAME}"
   }
 
   // Create fields

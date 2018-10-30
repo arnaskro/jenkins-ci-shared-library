@@ -2,10 +2,9 @@
 
 def call() {
   pipeline {
-    agent any
+    agent { label 'build-node' }
     stages {
       stage('Initialize') {
-        agent { label 'build-node' }
         steps {
           script {
             dir(env.SERVICE_DIR) {
@@ -16,7 +15,6 @@ def call() {
       }
 
       stage('Build') {
-        agent { label 'build-node' }
         steps {
           script {
             dir(env.SERVICE_DIR) {
@@ -27,7 +25,6 @@ def call() {
       }
 
       stage ('Test') {
-        agent { label 'build-node' }
         steps {
           script {
             dir(env.SERVICE_DIR) {
@@ -38,7 +35,6 @@ def call() {
       }
 
       stage('Approve'){
-        agent { label 'deploy-node' }
         when {
           expression { STAGE ==~ /(production|prerel)/ }
         }
