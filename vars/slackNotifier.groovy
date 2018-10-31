@@ -3,7 +3,7 @@
 def call(String buildResult) {
   // Create JSON object
   // Initial variables
-  job_title = "${env.JOB_NAME} > ${env.SERVICE} (${env.BUILD_DISPLAY_NAME})"
+  job_title = "${BRANCH_NAME} > ${env.SERVICE} (${env.BUILD_DISPLAY_NAME})"
   color = ""
   status = buildResult
 
