@@ -59,10 +59,10 @@ def call() {
       }
     }
 
-    post {
-      always {
-        slackNotifier(currentBuild.currentResult)
-      }
-    }
+    // post {
+    //   always {
+    //     slackNotifier(currentBuild.currentResult)
+    //   }
+    // }
   }
 }

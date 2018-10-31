@@ -18,7 +18,7 @@ def call(String buildResult) {
     // TODO: check if build was not approved and give a different response
 
     color = "danger"
-    status = "FAIL at ${env.STAGE_NAME}"
+    status = "FAIL"
   }
 
   // Create fields
