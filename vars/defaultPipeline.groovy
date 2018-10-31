@@ -59,10 +59,11 @@ def call() {
       }
     }
 
-    // post {
-    //   always {
-    //     slackNotifier(currentBuild.currentResult)
-    //   }
-    // }
+    post {
+      always {
+        sh 'printenv'
+        slackNotifier(currentBuild.currentResult)
+      }
+    }
   }
 }
