@@ -60,8 +60,7 @@ def call() {
     }
 
     post {
-      always {
-        sh 'printenv'
+      failure {
         slackNotifier(currentBuild.currentResult)
       }
     }
