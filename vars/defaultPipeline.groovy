@@ -60,8 +60,12 @@ def call() {
     }
 
     post {
-      failure {
-        slackNotifier(currentBuild.currentResult)
+      always {
+        try {
+          slackNotifier(currentBuild.currentResult)
+        } catch(e) {
+          echo 'idk what is wrong'
+        }
       }
     }
   }
