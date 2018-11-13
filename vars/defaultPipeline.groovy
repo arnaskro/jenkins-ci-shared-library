@@ -1,8 +1,14 @@
 #!/usr/bin/env groovy
 
-def startPipeline() {
+def call() {
   pipeline {
     agent { label 'build-node' }
+    
+    when {
+      expression {
+        return checkChanges()
+      }
+    }
 
     triggers {
       GenericTrigger(
@@ -90,11 +96,5 @@ def startPipeline() {
         }
       }
     }
-  }
-}
-
-def call() {
-  if(checkChanges()) {
-    startPipeline()
   }
 }
