@@ -1,8 +1,8 @@
 #!/usr/bin/env groovy
 
-def call() {
+def call(previous_commit, new_commit, service_folder) {
   return sh (
-    script: "git diff --name-only $GIT_PREVIOUS_COMMIT $GIT_COMMIT $SERVICE_FOLDER",
+    script: "git diff --name-only ${previous_commit} ${new_commit} ${service_folder}",
     returnStatus: true
   ) != 0
 }

@@ -13,7 +13,9 @@ def call() {
     triggers {
       GenericTrigger(
         genericVariables: [
-          [key: 'ref', value: '$.ref']
+          [key: 'ref', value: '$.ref'],
+          [key: 'before', value: '$.before'],
+          [key: 'after', value: '$.after']
         ],
         
         causeString: 'Triggered on $ref',
@@ -23,7 +25,7 @@ def call() {
         
         token: 'IJ58saMFRP0p',
         
-        regexpFilterText: "$ref",
+        regexpFilterText: "${checkChanges(env.before, env.after, env.SERVICE_FOLDER)}-$ref",
         regexpFilterExpression: '(refs/heads/(master|development))'
       )
     }
