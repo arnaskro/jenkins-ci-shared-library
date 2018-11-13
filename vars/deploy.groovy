@@ -8,5 +8,4 @@ def call() {
   sh 'npm install'
 
   sh "sls deploy --aws-profile ${env.STAGE} --stage ${env.STAGE}"
-  echo "Done!"
 }

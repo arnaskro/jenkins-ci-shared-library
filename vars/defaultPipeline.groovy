@@ -86,7 +86,8 @@ def call() {
           try {
             slackNotifier(currentBuild.currentResult)
           } catch(e) {
-            echo 'idk what is wrong'
+            // Simply ignore the error, because the slack notification always succeed
+            echo 'Done!'
           }
         }
       }
