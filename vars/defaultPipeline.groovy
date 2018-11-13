@@ -12,6 +12,8 @@ def call() {
         
         causeString: 'Triggered on $ref',
         
+        token: '123',
+        
         printContributedVariables: true,
         printPostContent: true,
         
