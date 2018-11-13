@@ -7,8 +7,7 @@ def call() {
     triggers {
       GenericTrigger(
         genericVariables: [
-          [key: 'ref', value: '$.ref'],
-          [key: 'changes', value: '$.commits.modified']
+          [key: 'ref', value: '$.ref']
         ],
         
         causeString: 'Triggered on $ref',
@@ -20,8 +19,8 @@ def call() {
         
         silentResponse: false,
         
-        // regexpFilterText: '$ref',
-        // regexpFilterExpression: 'refs/heads/' + BRANCH_NAME
+        regexpFilterText: '$ref',
+        regexpFilterExpression: '(refs\/heads\/(master|development))'
       )
     }
 
