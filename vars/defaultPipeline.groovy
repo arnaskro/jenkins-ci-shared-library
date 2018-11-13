@@ -12,7 +12,7 @@ def call() {
           [key: 'after', value: '$.after']
         ],
         
-        causeString: "Triggered on $ref, $before, $after",
+        causeString: 'Triggered on $ref, $before, $after',
         printContributedVariables: true,
         printPostContent: true,
         silentResponse: false,
