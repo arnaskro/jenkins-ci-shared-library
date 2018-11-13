@@ -7,7 +7,8 @@ def call() {
     triggers {
       GenericTrigger(
         genericVariables: [
-          [key: 'ref', value: '$.ref']
+          [key: 'ref', value: '$.ref'],
+          [key: 'changes', value: '$.commits.modified']
         ],
         
         causeString: 'Triggered on $ref',
@@ -19,16 +20,19 @@ def call() {
         
         silentResponse: false,
         
-        regexpFilterText: '$ref',
-        regexpFilterExpression: 'refs/heads/' + BRANCH_NAME
+        // regexpFilterText: '$ref',
+        // regexpFilterExpression: 'refs/heads/' + BRANCH_NAME
       )
     }
 
     stages {
       stage('Initialize') {
         steps {
+          sh "git diff --name-only $GIT_PREVIOUS_COMMIT $GIT_COMMIT $SERVICE_DIR"
+
           script {
             sh "echo $ref"
+            sh "echo $changes"
             dir(env.SERVICE_DIR) {
               initialize()
             }

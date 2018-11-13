@@ -11,10 +11,7 @@ def call(String buildResult) {
     color = "good"
   } else if( buildResult == "UNSTABLE" ) { 
     color = "warning"
-  } else { 
-    sh 'printenv'
-    print buildResult
-    
+  } else {
     // TODO: check if build was not approved and give a different response
 
     color = "danger"
