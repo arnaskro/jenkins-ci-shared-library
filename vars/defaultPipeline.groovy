@@ -28,6 +28,7 @@ def call() {
       stage('Initialize') {
         steps {
           script {
+            sh "echo $ref"
             dir(env.SERVICE_DIR) {
               initialize()
             }
