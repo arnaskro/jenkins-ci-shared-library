@@ -1,5 +1,6 @@
 #!/usr/bin/env groovy
 def hasServiceChanges() {
+  sh 'printenv'
   return sh (
     script: "git diff --name-only $GIT_PREVIOUS_COMMIT $GIT_COMMIT $SERVICE_DIR",
     returnStatus: true
