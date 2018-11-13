@@ -10,10 +10,6 @@ def call() {
   pipeline {
     agent { label 'build-node' }
 
-    environment {
-      INCLUDES_CHANGES_FOR_THE_SERVICE = hasServiceChanges()
-    }
-
     triggers {
       GenericTrigger(
         genericVariables: [
@@ -27,7 +23,7 @@ def call() {
         
         token: 'IJ58saMFRP0p',
         
-        regexpFilterText: "$INCLUDES_CHANGES_FOR_THE_SERVICE-$ref",
+        regexpFilterText: "${hasServiceChanges()}-$ref",
         regexpFilterExpression: '(1-refs/heads/(master|development))'
       )
     }
