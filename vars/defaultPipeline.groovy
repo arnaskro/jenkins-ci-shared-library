@@ -10,7 +10,7 @@ def call() {
           [key: 'ref', value: '$.ref'],
           [key: 'before', value: '$.before'],
           [key: 'after', value: '$.after'],
-          [key: 'hasChanges', value: 'checkChanges($.before, $.after)']
+          [key: 'hasChanges', value: checkChanges('$.before', '$.after')]
         ],
         
         causeString: 'Triggered on $ref',
@@ -21,7 +21,7 @@ def call() {
         token: 'IJ58saMFRP0p',
         
         regexpFilterText: '$ref',
-        regexpFilterExpression: '(refs/heads/(master|development))'
+        regexpFilterExpression: '(1-refs/heads/(master|development))'
       )
     }
 
