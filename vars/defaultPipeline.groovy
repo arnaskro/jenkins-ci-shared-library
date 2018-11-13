@@ -38,7 +38,15 @@ def call() {
       stage('Initialize') {
         steps {
           script {
-            sh "git diff --name-only $GIT_PREVIOUS_COMMIT $GIT_COMMIT $SERVICE_DIR"
+            TESTAS = sh (
+                      script: "git diff --name-only $GIT_PREVIOUS_COMMIT $GIT_COMMIT $SERVICE_DIR",
+                      returnStatus: true
+                    )
+
+            echo TESTAS
+            echo TESTAS == null
+            echo TESTAS != null
+
             dir(env.SERVICE_DIR) {
               initialize()
             }
