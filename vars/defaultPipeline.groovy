@@ -20,7 +20,7 @@ def call() {
         silentResponse: false,
         
         regexpFilterText: '$ref',
-        regexpFilterExpression: '(refs\/heads\/(master|development))'
+        regexpFilterExpression: '(refs/heads/(master|development))'
       )
     }
 
