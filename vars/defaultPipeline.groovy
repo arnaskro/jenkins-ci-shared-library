@@ -3,13 +3,13 @@
 def call() {
   pipeline {
     agent { label 'build-node' }
-    
+
     triggers {
       GenericTrigger(
         genericVariables: [
           [key: 'ref', value: '$.ref'],
-          [key: 'before', value: '$.before'],
-          [key: 'after', value: '$.after']
+          [key: 'before', value: '$.COMMIT_HASH_BEFORE'],
+          [key: 'after', value: '$.COMMIT_HASH_AFTER']
         ],
         
         causeString: 'Triggered on $ref',
@@ -19,8 +19,8 @@ def call() {
         
         token: 'IJ58saMFRP0p',
         
-        regexpFilterText: "${checkChanges(env.before, env.after, env.SERVICE_FOLDER)}-$ref",
-        regexpFilterExpression: '(refs/heads/(master|development))'
+        regexpFilterText: "${checkChanges(COMMIT_HASH_BEFORE, COMMIT_HASH_AFTER)}-$ref",
+        regexpFilterExpression: '(1-refs/heads/(master|development))'
       )
     }
 
@@ -28,6 +28,8 @@ def call() {
       stage('Initialize') {
         steps {
           script {
+            echo checkChanges(COMMIT_HASH_BEFORE, COMMIT_HASH_AFTER)
+
             dir(env.SERVICE_DIR) {
               initialize()
             }
