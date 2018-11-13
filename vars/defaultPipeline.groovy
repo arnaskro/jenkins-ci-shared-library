@@ -21,13 +21,11 @@ def call() {
         ],
         
         causeString: 'Triggered on $ref',
-        
-        token: 'IJ58saMFRP0p',
-        
         printContributedVariables: true,
         printPostContent: true,
-        
         silentResponse: false,
+        
+        token: 'IJ58saMFRP0p',
         
         regexpFilterText: '$ref',
         regexpFilterExpression: '(refs/heads/(master|development))'
@@ -38,14 +36,14 @@ def call() {
       stage('Initialize') {
         steps {
           script {
+
             TESTAS = sh (
                       script: "git diff --name-only $GIT_PREVIOUS_COMMIT $GIT_COMMIT $SERVICE_DIR",
                       returnStatus: true
                     )
 
-            echo "1 > " + TESTAS
-            echo "2 > " + TESTAS == null
-            echo "3 > " + TESTAS != null
+            echo "1| " + TESTAS
+            echo "2| " + String.valueOf(hasServiceChanges())
 
             dir(env.SERVICE_DIR) {
               initialize()
