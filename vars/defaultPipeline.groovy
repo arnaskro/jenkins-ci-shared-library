@@ -19,7 +19,7 @@ def call() {
         
         token: 'IJ58saMFRP0p',
         
-        regexpFilterText: '${checkChanges(before, after)}-$ref',
+        regexpFilterText: "${checkChanges(env.before, env.after)}-${env.ref}",
         regexpFilterExpression: '(1-refs/heads/(master|development))'
       )
     }
