@@ -7,13 +7,14 @@ def call() {
     triggers {
       GenericTrigger(
         genericVariables: [
-          [key: 'ref', value: '$.ref'],
-          [key: 'before', value: '$.before'],
-          [key: 'after', value: '$.after']
+          [key: 'ref', value: '$.ref']
+          // [key: 'before', value: '$.before'],
+          // [key: 'after', value: '$.after']
           // [key: 'hasChanges', value: 'checkChanges($.before, $.after)']
         ],
         
-        causeString: 'Triggered on $ref, $before, $after',
+        causeString: 'Triggered on $ref',
+        // causeString: 'Triggered on $ref, $before, $after',
         printContributedVariables: true,
         printPostContent: true,
         silentResponse: false,
@@ -29,7 +30,7 @@ def call() {
       stage('Initialize') {
         steps {
           script {
-            echo "" + checkChanges(before, after)
+            // echo "" + checkChanges(before, after)
 
             dir(env.SERVICE_DIR) {
               initialize()
