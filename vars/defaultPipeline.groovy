@@ -4,12 +4,6 @@ def call() {
   pipeline {
     agent { label 'build-node' }
     
-    when {
-      expression {
-        return checkChanges()
-      }
-    }
-
     triggers {
       GenericTrigger(
         genericVariables: [
