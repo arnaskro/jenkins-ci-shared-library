@@ -10,7 +10,7 @@ def call() {
           [key: 'ref', value: '$.ref'],
           [key: 'before', value: '$.before'],
           [key: 'after', value: '$.after'],
-          [key: 'hasChanges', value: checkChanges('$.before', '$.after')]
+          [key: 'hasChanges', value: checkChanges('$.before', '$.after').toString()]
         ],
         
         causeString: 'Triggered on $ref',
@@ -20,7 +20,7 @@ def call() {
         
         token: 'IJ58saMFRP0p',
         
-        regexpFilterText: '$ref',
+        regexpFilterText: '$hasChanges-$ref',
         regexpFilterExpression: '(1-refs/heads/(master|development))'
       )
     }
@@ -29,6 +29,7 @@ def call() {
       stage('Initialize') {
         steps {
           script {
+            sh "printenv"
             echo "" + env.hasChanges
 
             dir(env.SERVICE_DIR) {
