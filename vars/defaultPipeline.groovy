@@ -9,8 +9,8 @@ def call() {
         genericVariables: [
           [key: 'ref', value: '$.ref'],
           [key: 'before', value: '$.before'],
-          [key: 'after', value: '$.after']
-          // [key: 'hasChanges', value: 'checkChanges($.before, $.after)']
+          [key: 'after', value: '$.after'],
+          [key: 'hasChanges', value: 'checkChanges($.before, $.after)']
         ],
         
         causeString: 'Triggered on $ref',
@@ -29,7 +29,7 @@ def call() {
       stage('Initialize') {
         steps {
           script {
-            echo "" + checkChanges(before, after)
+            echo "" + env.hasChanges
 
             dir(env.SERVICE_DIR) {
               initialize()
