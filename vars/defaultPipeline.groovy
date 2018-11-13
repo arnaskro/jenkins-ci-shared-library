@@ -4,6 +4,13 @@ def call() {
   pipeline {
     agent { label 'build-node' }
 
+    environment {
+      INCLUDES_CHANGES_FOR_THE_SERVICE = sh (
+          script: "git diff --name-only $GIT_PREVIOUS_COMMIT $GIT_COMMIT $SERVICE_DIR",
+          returnStatus: true
+      ) == 0
+    }
+
     triggers {
       GenericTrigger(
         genericVariables: [
@@ -27,11 +34,8 @@ def call() {
     stages {
       stage('Initialize') {
         steps {
-          sh "git diff --name-only $GIT_PREVIOUS_COMMIT $GIT_COMMIT $SERVICE_DIR"
-
           script {
-            sh "echo $ref"
-            sh "echo $changes"
+            sh "echo $INCLUDES_CHANGES_FOR_THE_SERVICE"
             dir(env.SERVICE_DIR) {
               initialize()
             }
