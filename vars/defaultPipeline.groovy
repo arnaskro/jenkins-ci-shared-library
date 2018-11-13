@@ -43,9 +43,9 @@ def call() {
                       returnStatus: true
                     )
 
-            echo TESTAS
-            echo TESTAS == null
-            echo TESTAS != null
+            echo "1 > " + TESTAS
+            echo "2 > " + TESTAS == null
+            echo "3 > " + TESTAS != null
 
             dir(env.SERVICE_DIR) {
               initialize()
