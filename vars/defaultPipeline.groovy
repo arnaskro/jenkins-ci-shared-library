@@ -1,6 +1,6 @@
 #!/usr/bin/env groovy
 
-def run() {
+def startPipeline() {
   pipeline {
     agent { label 'build-node' }
 
@@ -95,6 +95,6 @@ def run() {
 
 def call() {
   if(checkChanges()) {
-    run()
+    startPipeline()
   }
 }
