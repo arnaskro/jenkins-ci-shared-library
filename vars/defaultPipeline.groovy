@@ -22,7 +22,7 @@ def call() {
         
         token: 'IJ58saMFRP0p',
         
-        regexpFilterText: '$hasChanges-$ref',
+        regexpFilterText: '1-$ref',
         regexpFilterExpression: '(1-refs/heads/(master|development))'
       )
     }
