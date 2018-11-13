@@ -9,7 +9,8 @@ def call() {
         genericVariables: [
           [key: 'ref', value: '$.ref'],
           [key: 'before', value: '$.before'],
-          [key: 'after', value: '$.after']
+          [key: 'after', value: '$.after'],
+          [key: 'hasChanges', value: 'checkChanges($.before, $.after)']
         ],
         
         causeString: 'Triggered on $ref, $before, $after',
@@ -19,7 +20,7 @@ def call() {
         
         token: 'IJ58saMFRP0p',
         
-        regexpFilterText: "${checkChanges(before, after)}-$ref",
+        regexpFilterText: '$hasChanges-$ref',
         regexpFilterExpression: '(1-refs/heads/(master|development))'
       )
     }
