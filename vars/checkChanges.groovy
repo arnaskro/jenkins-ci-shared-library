@@ -2,6 +2,7 @@
 
 def call(previous_commit, new_commit) {
   node {
+    echo "hello"
     sh "printenv"
     hasChanges = sh (
       script: "git diff --name-only ${previous_commit} ${new_commit} $SERVICE_FOLDER",
