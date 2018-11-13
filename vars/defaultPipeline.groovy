@@ -10,8 +10,9 @@ def call() {
           [key: 'ref', value: '$.ref'],
           [key: 'before', value: '$.before'],
           [key: 'after', value: '$.after'],
-          [key: 'hasChanges', value: "${checkChanges('$.before', '$.after')}"],
-          [key: 'testas', value: "hello"]
+          [key: 'hasChanges', value: "${checkChanges(before, after)}"],
+          [key: 'testas', value: "hello"],
+          [key: 'tests', value: "$.after"]
         ],
         
         causeString: 'Triggered on $ref',
