@@ -19,19 +19,14 @@ def call() {
         
         token: 'IJ58saMFRP0p',
         
-        regexpFilterText: '$ref',
-        regexpFilterExpression: '(refs/heads/(master|development))'
+        regexpFilterText: GIT_COMMIT + '$ref' + GIT_PREVIOUS_COMMIT,
+        regexpFilterExpression: '(1-refs/heads/(master|development))'
       )
     }
 
     stages {
       stage('Initialize') {
         steps {
-          when {
-            expression {
-              checkChanges(env.before, env.after)
-            }
-          }
           script {
             dir(env.SERVICE_DIR) {
               initialize()
