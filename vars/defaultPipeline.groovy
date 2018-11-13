@@ -19,8 +19,8 @@ def call() {
         
         token: 'IJ58saMFRP0p',
         
-        regexpFilterText: "${checkChanges(env.before, env.after)}-${env.ref}",
-        regexpFilterExpression: ''
+        regexpFilterText: "${checkChanges(env.before, env.after)}-${env.ref}-${env.before}-${env.after}",
+        regexpFilterExpression: '$ref'
         // regexpFilterExpression: '(1-refs/heads/(master|development))'
       )
     }
@@ -29,7 +29,6 @@ def call() {
       stage('Initialize') {
         steps {
           script {
-            sh "printenv"
             dir(env.SERVICE_DIR) {
               initialize()
             }
