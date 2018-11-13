@@ -1,9 +1,9 @@
 #!/usr/bin/env groovy
 def hasServiceChanges() {
-  sh (
+  return sh (
     script: "git diff --name-only $GIT_PREVIOUS_COMMIT $GIT_COMMIT $SERVICE_DIR",
     returnStatus: true
-  ) == 0
+  ) != 0
 }
 
 def call() {
@@ -27,8 +27,8 @@ def call() {
         
         token: 'IJ58saMFRP0p',
         
-        regexpFilterText: '$ref',
-        regexpFilterExpression: '(refs/heads/(master|development))'
+        regexpFilterText: "$INCLUDES_CHANGES_FOR_THE_SERVICE-$ref",
+        regexpFilterExpression: '(1-refs/heads/(master|development))'
       )
     }
 
@@ -36,15 +36,6 @@ def call() {
       stage('Initialize') {
         steps {
           script {
-
-            TESTAS = sh (
-                      script: "git diff --name-only $GIT_PREVIOUS_COMMIT $GIT_COMMIT $SERVICE_DIR",
-                      returnStatus: true
-                    )
-
-            echo "1| " + TESTAS
-            echo "2| " + String.valueOf(hasServiceChanges())
-
             dir(env.SERVICE_DIR) {
               initialize()
             }
