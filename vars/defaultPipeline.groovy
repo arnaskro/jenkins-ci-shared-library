@@ -12,7 +12,7 @@ def call() {
         
         causeString: 'Triggered on $ref',
         
-        token: '123',
+        token: 'IJ58saMFRP0p',
         
         printContributedVariables: true,
         printPostContent: true,
