@@ -5,7 +5,7 @@ def call(previous_commit, new_commit) {
     echo "hello"
     sh "printenv"
     hasChanges = sh (
-      script: "git diff --name-only ${previous_commit} ${new_commit} $SERVICE_FOLDER",
+      script: "git diff --name-only ${previous_commit} ${new_commit} ${env.SERVICE_FOLDER}",
       returnStatus: true
     ) != 0
 
