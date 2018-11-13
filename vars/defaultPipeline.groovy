@@ -1,16 +1,17 @@
 #!/usr/bin/env groovy
-
-HAS_SERVICE_CHANGES = sh (
+def hasServiceChanges() {
+  sh (
     script: "git diff --name-only $GIT_PREVIOUS_COMMIT $GIT_COMMIT $SERVICE_DIR",
     returnStatus: true
-) == 0
+  ) == 0
+}
 
 def call() {
   pipeline {
     agent { label 'build-node' }
 
     environment {
-      INCLUDES_CHANGES_FOR_THE_SERVICE = HAS_SERVICE_CHANGES
+      INCLUDES_CHANGES_FOR_THE_SERVICE = hasServiceChanges()
     }
 
     triggers {
