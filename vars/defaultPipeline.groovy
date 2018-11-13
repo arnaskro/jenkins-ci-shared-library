@@ -38,7 +38,7 @@ def call() {
       stage('Initialize') {
         steps {
           script {
-            sh "echo $INCLUDES_CHANGES_FOR_THE_SERVICE"
+            sh "git diff --name-only $GIT_PREVIOUS_COMMIT $GIT_COMMIT $SERVICE_DIR"
             dir(env.SERVICE_DIR) {
               initialize()
             }
