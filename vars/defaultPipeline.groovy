@@ -29,8 +29,6 @@ def call() {
         steps {
           script {
             sh "printenv"
-            echo "" + env.hasChanges
-
             dir(env.SERVICE_DIR) {
               initialize()
             }
