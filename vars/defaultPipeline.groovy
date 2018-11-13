@@ -61,10 +61,12 @@ def call() {
 
     post {
       always {
-        try {
-          slackNotifier(currentBuild.currentResult)
-        } catch(e) {
-          echo 'idk what is wrong'
+        script {
+          try {
+            slackNotifier(currentBuild.currentResult)
+          } catch(e) {
+            echo 'idk what is wrong'
+          }
         }
       }
     }
