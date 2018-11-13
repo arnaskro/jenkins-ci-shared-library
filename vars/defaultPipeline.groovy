@@ -19,15 +19,19 @@ def call() {
         
         token: 'IJ58saMFRP0p',
         
-        regexpFilterText: "${checkChanges(env.before, env.after)}-${env.ref}-${env.before}-${env.after}",
-        regexpFilterExpression: '$ref'
-        // regexpFilterExpression: '(1-refs/heads/(master|development))'
+        regexpFilterText: '$ref',
+        regexpFilterExpression: '(refs/heads/(master|development))'
       )
     }
 
     stages {
       stage('Initialize') {
         steps {
+          when {
+            expression {
+              checkChanges(env.before, env.after)
+            }
+          }
           script {
             dir(env.SERVICE_DIR) {
               initialize()
