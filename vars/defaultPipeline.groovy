@@ -8,8 +8,8 @@ def call() {
       GenericTrigger(
         genericVariables: [
           [key: 'ref', value: '$.ref'],
-          [key: 'before', value: '$.COMMIT_HASH_BEFORE'],
-          [key: 'after', value: '$.COMMIT_HASH_AFTER']
+          [key: 'before', value: '$.before'],
+          [key: 'after', value: '$.after']
         ],
         
         causeString: 'Triggered on $ref',
@@ -19,7 +19,7 @@ def call() {
         
         token: 'IJ58saMFRP0p',
         
-        regexpFilterText: "${checkChanges(COMMIT_HASH_BEFORE, COMMIT_HASH_AFTER)}-$ref",
+        regexpFilterText: "${checkChanges(before, after)}-$ref",
         regexpFilterExpression: '(1-refs/heads/(master|development))'
       )
     }
@@ -28,7 +28,7 @@ def call() {
       stage('Initialize') {
         steps {
           script {
-            echo checkChanges(COMMIT_HASH_BEFORE, COMMIT_HASH_AFTER)
+            echo "" + checkChanges(before, after)
 
             dir(env.SERVICE_DIR) {
               initialize()
