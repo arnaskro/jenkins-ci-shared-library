@@ -10,8 +10,24 @@ def call() {
           [key: 'ref', value: '$.ref'],
           [key: 'before', value: '$.before'],
           [key: 'after', value: '$.after'],
-          [key: 'hasChanges', value: '$.commits[*].modified[*]']
-          // [key: 'hasChanges', value: '$.commits[*].modified[?(@=~ /${env.SERVICE_DIR}.*/i)]']
+          [
+            key: 'hasChanges', 
+            value: '$.commits[*].modified[*]',
+            regexpFilter: SERVICE_DIR + 'sms-api.*'
+          ],
+          [
+            key: 'includesChanges', 
+            value: '$.commits[*].modified[*]',
+            regexpFilter: SERVICE_DIR + '.*'
+          ],
+          [
+            key: 'test', 
+            value: '$.commits[*].modified[?(@=~ /sms-api.*/i)]'
+          ],
+          [
+            key: 'test2', 
+            value: '$.commits[*].modified[?(@=~ /'+SERVICE_DIR+'.*/i)]'
+          ]
         ],
         
         causeString: 'Triggered on $ref',
