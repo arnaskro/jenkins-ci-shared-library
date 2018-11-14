@@ -4,10 +4,6 @@ def call() {
   pipeline {
     agent { label 'build-node' }
 
-    parameters {
-      stringParam('has_changes', 'test')
-    }
-
     triggers {
       GenericTrigger(
         genericVariables: [
