@@ -1,14 +1,14 @@
 #!/usr/bin/env groovy
 
-def call(previous_commit, new_commit) {
+def call() {
   node {
     sh "printenv"
-    echo previous_commit
-    echo new_commit
+    echo env.before
+    echo env.after
     echo env.SERVICE_DIR
-    
+
     hasChanges = sh (
-      script: "git diff --name-only ${previous_commit} ${new_commit} ${env.SERVICE_DIR}",
+      script: "git diff --name-only ${env.before} ${env.after} ${env.SERVICE_DIR}",
       returnStatus: true
     ) != 0
 
