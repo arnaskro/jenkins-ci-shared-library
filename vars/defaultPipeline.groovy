@@ -4,12 +4,21 @@ def call() {
   pipeline {
     agent { label 'build-node' }
 
+    parameters {
+      stringParam('has_changes', 'test')
+    }
+
     triggers {
       GenericTrigger(
         genericVariables: [
           [key: 'ref', value: '$.ref'],
           [key: 'before', value: '$.before'],
-          [key: 'after', value: '$.after']
+          [key: 'after', value: '$.after'],
+          [
+            key: 'has_changes',
+            value: '$.testas',
+            defaultValue: 'defalt'
+          ]
         ],
         
         causeString: 'Triggered on $ref',
@@ -19,8 +28,8 @@ def call() {
         
         token: 'IJ58saMFRP0p',
         
-        regexpFilterText: GIT_COMMIT + '$ref' + GIT_PREVIOUS_COMMIT,
-        regexpFilterExpression: '(1-refs/heads/(master|development))'
+        regexpFilterText: '$ref',
+        regexpFilterExpression: '(refs/heads/(master|development))'
       )
     }
 
