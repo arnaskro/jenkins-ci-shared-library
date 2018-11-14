@@ -10,7 +10,8 @@ def call() {
           [key: 'ref', value: '$.ref'],
           [key: 'before', value: '$.before'],
           [key: 'after', value: '$.after'],
-          [key: 'hasChanges', value: '$.commits[*].modified[?(@=~ /${env.SERVICE_DIR}.*/i)]']
+          [key: 'hasChanges', value: '$.commits[*].modified[*]']
+          // [key: 'hasChanges', value: '$.commits[*].modified[?(@=~ /${env.SERVICE_DIR}.*/i)]']
         ],
         
         causeString: 'Triggered on $ref',
