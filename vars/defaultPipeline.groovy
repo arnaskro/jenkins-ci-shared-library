@@ -12,8 +12,8 @@ def call() {
           [key: 'after', value: '$.after'],
           [
             key: 'has_changes',
-            value: '$.testas',
-            defaultValue: checkChanges('$.before', '$.after')
+            value: checkChanges('$.before', '$.after'),
+            defaultValue: "none"
           ]
         ],
         
@@ -25,7 +25,7 @@ def call() {
         token: 'IJ58saMFRP0p',
         
         regexpFilterText: '$ref',
-        regexpFilterExpression: '(refs/heads/(master|development))'
+        regexpFilterExpression: '(refs/((tags/.*)|(heads/(master|development))))'
       )
     }
 
