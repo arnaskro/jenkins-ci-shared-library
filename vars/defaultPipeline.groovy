@@ -61,7 +61,8 @@ def call() {
 
       stage('Approve'){
         when {
-          expression { STAGE ==~ /(production|prerel)/ }
+          expression { STAGE ==~ /(production|prerelease|development)/ }
+          // expression { STAGE ==~ /(production|prerelease)/ }
         }
         steps {
           script {

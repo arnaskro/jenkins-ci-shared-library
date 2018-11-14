@@ -7,5 +7,5 @@ def call() {
   env.PATH = "${node}/bin:${env.PATH}"
   sh 'npm install'
 
-  // sh "sls deploy --aws-profile ${env.STAGE} --stage ${env.STAGE}"
+  sh "sls deploy --aws-profile ${env.STAGE} --stage ${env.STAGE}"
 }
