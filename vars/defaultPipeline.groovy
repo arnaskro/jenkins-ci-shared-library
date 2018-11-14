@@ -11,22 +11,24 @@ def call() {
           [key: 'before', value: '$.before'],
           [key: 'after', value: '$.after'],
           [
-            key: 'hasChanges', 
-            value: '$.commits[*].modified[*]',
-            regexpFilter: SERVICE_DIR + 'sms-api.*'
-          ],
-          [
-            key: 'includesChanges', 
-            value: '$.commits[*].modified[*]',
-            regexpFilter: SERVICE_DIR + '.*'
-          ],
-          [
             key: 'test', 
             value: '$.commits[*].modified[?(@=~ /sms-api.*/i)]'
           ],
           [
             key: 'test2', 
             value: '$.commits[*].modified[?(@=~ /'+SERVICE_DIR+'.*/i)]'
+          ],
+          [
+            key: 'test23', 
+            value: '$.commits[*].modified[?(@=~ /fadfsd.*/i)]'
+          ],
+          [
+            key: 'env1', 
+            defaultValue: SERVICE_DIR
+          ],
+          [
+            key: 'env2', 
+            defaultValue: env.SERVICE_DIR
           ]
         ],
         
@@ -37,7 +39,7 @@ def call() {
         
         token: 'IJ58saMFRP0p',
         
-        regexpFilterText: '$hasChanges',
+        regexpFilterText: '$hasChanges-$ref',
         regexpFilterExpression: '(1-refs/((tags/.*)|(heads/(master|development))))'
       )
     }
