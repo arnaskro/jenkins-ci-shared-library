@@ -12,7 +12,7 @@ def call() {
           [key: 'after', value: '$.after'],
           [
             key: 'has_changes',
-            value: checkChanges('$.before', '$.after'),
+            value: "${checkChanges('$.before', '$.after')}",
             defaultValue: "none"
           ]
         ],
