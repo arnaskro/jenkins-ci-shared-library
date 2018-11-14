@@ -23,7 +23,7 @@ def call() {
         // (\[..*\]) - checks if there are any changes 
         // (tags/.*) - checks for tags
         // (heads/(master|development)) - checks for certain branches
-        regexpFilterExpression: '(($\\[..*\\])-refs/((tags/.*)|(heads/(master|development))))',
+        regexpFilterExpression: '((\\[..*\\])-refs/((tags/.*)|(heads/(master|development))))',
         regexpFilterText: '$service_changes-$ref',
       )
     }
