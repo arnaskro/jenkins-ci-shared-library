@@ -13,7 +13,7 @@ def call() {
           [
             key: 'has_changes',
             value: '$.testas',
-            defaultValue: 'defalt'
+            defaultValue: checkChanges('$.before', '$.after')
           ]
         ],
         
