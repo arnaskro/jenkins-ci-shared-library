@@ -24,10 +24,12 @@ def call() {
           ],
           [
             key: 'env1', 
+            value: '$.teass',
             defaultValue: SERVICE_DIR
           ],
           [
             key: 'env2', 
+            value: '$.teass',
             defaultValue: env.SERVICE_DIR
           ]
         ],
