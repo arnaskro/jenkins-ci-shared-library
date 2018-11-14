@@ -8,15 +8,15 @@ def call() {
     echo env.SERVICE_DIR
     echo env.ref
 
-    hasChanges = sh (
+    gitDifferences = sh (
       script: "git diff --name-only ${env.before} ${env.after} ${env.SERVICE_DIR}",
       returnStatus: true
-    ) != 0
+    )
 
-    if (hasChanges) {
-      return 1
+    if (gitDifferences == 0) {
+      return "0-${env.ref}-${env.SERVICE_DIR}-${env.after}"
     } else {
-      return 0
+      return "1-${env.ref}-${env.SERVICE_DIR}-${env.after}"
     }
   }
 }
