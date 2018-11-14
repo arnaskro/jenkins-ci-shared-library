@@ -9,7 +9,8 @@ def call() {
         genericVariables: [
           [key: 'ref', value: '$.ref'],
           [key: 'before', value: '$.before'],
-          [key: 'after', value: '$.after']
+          [key: 'after', value: '$.after'],
+          [key: 'hasChanges', value '$.commits[*].modified[?(@=~ /${env.SERVICE_DIR}.*/i)]']
         ],
         
         causeString: 'Triggered on $ref',
@@ -19,7 +20,7 @@ def call() {
         
         token: 'IJ58saMFRP0p',
         
-        regexpFilterText: "${checkChanges()}",
+        regexpFilterText: '$hasChanges',
         regexpFilterExpression: '(1-refs/((tags/.*)|(heads/(master|development))))'
       )
     }
