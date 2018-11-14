@@ -9,7 +9,10 @@ def call() {
     echo env.ref
 
 
-    return env
+    return sh (
+      script: "printenv",
+      returnStdout: true
+    )
 
 
     // gitDifferences = sh (
