@@ -6,6 +6,7 @@ def call() {
     echo env.before
     echo env.after
     echo env.SERVICE_DIR
+    echo env.ref
 
     hasChanges = sh (
       script: "git diff --name-only ${env.before} ${env.after} ${env.SERVICE_DIR}",
