@@ -20,8 +20,7 @@ def call() {
         token: 'IJ58saMFRP0p',
         
         regexpFilterText: "${checkChanges()}",
-        // regexpFilterExpression: '(refs/((tags/.*)|(heads/(master|development))))'
-        regexpFilterExpression: ''
+        regexpFilterExpression: '(1-refs/((tags/.*)|(heads/(master|development))))'
       )
     }
 
